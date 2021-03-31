@@ -1,4 +1,4 @@
-# Nuxt Plugin for IPFS Routing
+# Nuxt Module for IPFS Gateway Routing
 
 ## Overview
 
@@ -10,10 +10,10 @@ Enabling this plugin for Nuxt in **static mode** will allow resources, including
 - `gateway.ipfs.io/ipfs/Qma....AbFd/`
 
 Subsequently, resources and other pages use paths relative to those bases:
-
 - `foo.com/bar`
 - `gateway.ipfs.io/ipfs/Qma....AbFd/bar`
 
+or
 - `foo.com/style.css`
 - `gateway.ipfs.io/ipfs/Qma....AbFd/style.css`
 
@@ -55,7 +55,17 @@ All links and image assets must be wrapped using the included `$relativity()` gl
 ## Additional Cases
 _To be added_
 
-## TO DO
+#### Canonicalization and SEO
+Additionally, it may be useful in the future to add a canonicalization option, to semantically declare one page as a duplicate of the other, and direct third party entities like bots to the correct resource. This would be accomplished by injecting a tag into `<head>` of the version that is considered secondary, which would look like 
+
+```html
+<link rel="canonical" href="foo.com/bar" />
+```
+
+Since IPFS gateway URLs were an older (and by some standards _legacy_) implementation, this tag would typically be added to the IPFS Gateway URLs only.
+
+## Roadmap
 - [ ] Update hook to clear `WARN` message: `render:routeContext(nuxt) is deprecated, Please use vue-renderer:ssr:context(context)`
 - [ ] Add checker for `target: static`
 - [ ] Add checker for `publicPath` and `router.base` (values _cannot_ be set in `nuxt.config.js`)
+- [ ] Construct and inject `rel="canonical"` tag
