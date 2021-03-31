@@ -67,7 +67,7 @@ Since IPFS gateway URLs were an older (and by some standards _legacy_) implement
 ## Roadmap
 - [ ] Update hook to clear `WARN` message: `render:routeContext(nuxt) is deprecated, Please use vue-renderer:ssr:context(context)`
 - [ ] Add checker for `target: static`
-- [ ] Add checker for `publicPath` and `router.base` (values _cannot_ be set in `nuxt.config.js`)
+- [ ] Add checker for `publicPath` and `router.base` (values _must not_ be set in `nuxt.config.js`)
 - [ ] Construct and inject `rel="canonical"` tag
 - [ ] Make the favicon path relative
-- [ ] Make 200.html path relative
+- [ ] Make `200.html` path relative
