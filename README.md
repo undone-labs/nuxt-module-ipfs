@@ -17,9 +17,13 @@ Subsequently, resources and other pages use paths relative to those bases:
 - `foo.com/style.css`
 - `gateway.ipfs.io/ipfs/Qma....AbFd/style.css`
 
-
 ## Usage
 _To be added_
 
 ## Additional Cases
 _To be added_
+
+## TO DO
+- [] Update hook to clear `WARN` message: `render:routeContext(nuxt) is deprecated, Please use vue-renderer:ssr:context(context)`
+- [] Add checker for `target: static`
+- [] Add checker for `publicPath` and `router.base` (values _cannot_ be set in `nuxt.config.js`)
