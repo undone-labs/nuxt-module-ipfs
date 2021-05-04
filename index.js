@@ -1,6 +1,6 @@
 /*
  *
- * 📦 [Module] NuxtIpfsPlugin
+ * 📦 [Module] NuxtModuleIpfs
  *
  */
 
@@ -80,8 +80,8 @@ const addHooks = (instance) => {
 
 // ////////////////////////////////////////////////////////////////// Initialize
 // -----------------------------------------------------------------------------
-function NuxtPluginIpfs () {
-  console.log(`📦 [Module] NuxtPluginIpfs`)
+function NuxtModuleIpfs () {
+  console.log(`📦 [Module] NuxtModuleIpfs`)
   registerPlugins(this, () => {
     if (process.env.NODE_ENV !== 'development') {
       addHooks(this)
@@ -91,4 +91,4 @@ function NuxtPluginIpfs () {
 
 // ////////////////////////////////////////////////////////////////////// Export
 // -----------------------------------------------------------------------------
-export default NuxtPluginIpfs
+export default NuxtModuleIpfs
