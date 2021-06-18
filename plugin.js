@@ -10,12 +10,20 @@ console.log(`🔌 [Module | NuxtModuleIpfs] Methods`)
 // -----------------------------------------------------------------------------
 // ------------------------------------------------------------------ relativity
 const Relativity = (path) => {
-  const append = path.charAt(0) === '/' ? path.slice(1) : path
   if (process.env.NODE_ENV !== 'development') {
-    if (typeof window !== 'undefined') { return path }
-    return `/relativity/${append}`
+    const append = path.charAt(0) === '/' ? path.slice(1) : path;
+    if (typeof window !== 'undefined') {
+      const ipfsPathRegExp = /^(\/(?:ipfs|ipns)\/[^/]+)/;
+      const ipfsPathPrefix = (window.location.pathname.match(ipfsPathRegExp) || [])[1] || '';
+      if (ipfsPathPrefix) {
+        return `${ipfsPathPrefix}${path}/`;
+      } else {
+        return path;
+      }
+    }
+    return `/relativity/${append}`;
   }
-  return path
+  return path;
 }
 
 // ///////////////////////////////////////////////////////////// Export & Inject

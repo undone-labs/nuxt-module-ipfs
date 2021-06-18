@@ -57,12 +57,22 @@ const addHooks = (instance) => {
   })
 
   /*
+    Force the loading of all Javascript files
+  */
+
+  instance.nuxt.hook('render:resourcesLoaded', (resources) => {
+    resources.clientManifest.initial = resources.clientManifest.initial.concat(resources.clientManifest.async)
+    initialScripts = resources.clientManifest.initial
+    asyncScripts = resources.clientManifest.async
+  })
+
+  /*
     This block gives us access to the generated javascript before it is
     serialized
   */
 
-  instance.nuxt.hook('render:routeContext', (ctx) => {
-    parsed = parseRoute(ctx.routePath)
+  instance.nuxt.hook('vue-renderer:ssr:context', (ctx) => {
+    parsed = parseRoute(ctx.nuxt.routePath)
     // Apply url replacements to generated javascript before it is serialized
     ctx.staticAssetsBase = `${parsed.replaceSrc}${staticAssetsOpts.dir}/${staticAssetsOpts.version}`
   })
@@ -74,7 +84,10 @@ const addHooks = (instance) => {
   instance.nuxt.hook('generate:page', (payload) => {
     parsed = parseRoute(payload.route)
     // Apply url replacements to generated HTML
-    payload.html = payload.html.replace(/\/_nuxt\//gi, parsed.replaceSrc).replace(/\/relativity\//gi, parsed.replaceStatic)
+    payload.html = payload.html
+      .replace(/"\/_nuxt\//gi, `"${parsed.replaceSrc}`)
+      .replace(/\(\/_nuxt\//gi, `(${parsed.replaceSrc}`)
+      .replace(/\/relativity\//gi, parsed.replaceStatic)
   })
 }
 
