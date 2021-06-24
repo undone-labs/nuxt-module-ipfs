@@ -1,0 +1,35 @@
+{
+  "name": "nuxt-module-ipfs",
+  "version": "1.0.0-alpha.2",
+  "description": "A module that enables Nuxt routing for both the intended path and IPFS gateway URLs, which include a hash",
+  "keywords": [
+    "Nuxt",
+    "NuxtJS",
+    "IPFS",
+    "Interplanetary File System"
+  ],
+  "homepage": "https://github.com/agency-undone/nuxt-module-ipfs#readme",
+  "bugs": "https://github.com/agency-undone/nuxt-module-ipfs/issues",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Nauras Jabari",
+    "url": "https://github.com/timelytree"
+  },
+  "contributors": [
+    {
+      "name": "Orun Bhuiyan",
+      "url": "https://github.com/orvn"
+    }
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agency-undone/nuxt-module-ipfs"
+  },
+  "dependencies": {
+    "klaw": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=12.21.0"
+  }
+}
