@@ -30,7 +30,7 @@ _`npm` package coming soon. Manual installation required for now._
 export default {
   target: 'static',
   modules: [
-    '~/modules/nuxt-plugin-ipfs'
+    '~/modules/nuxt-module-ipfs'
   ]
 }
 ```
