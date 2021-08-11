@@ -1,7 +1,7 @@
 {
   "name": "nuxt-module-ipfs",
-  "version": "1.0.0-alpha.2",
-  "description": "A module that enables Nuxt routing for both the intended path and IPFS gateway URLs, which include a hash",
+  "version": "1.0.1-alpha.2",
+  "description": "A Nuxt module that enables nuxt routing for both the intended path and IPFS gateway URLs, which include a CID (hash)",
   "keywords": [
     "Nuxt",
     "NuxtJS",
@@ -12,8 +12,8 @@
   "bugs": "https://github.com/agency-undone/nuxt-module-ipfs/issues",
   "license": "Apache-2.0",
   "author": {
-    "name": "Nauras Jabari",
-    "url": "https://github.com/timelytree"
+    "name": "Agency Undone",
+    "email": "hello@agencyundone.com"
   },
   "contributors": [
     {
