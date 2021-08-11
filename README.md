@@ -4,25 +4,28 @@
 
 A Nuxt module that enables nuxt routing for both the intended path and IPFS gateway URLs, which include a CID (hash) of the asset.
 
-Enabling this plugin for Nuxt in **static mode** will allow resources, including pages, to be accessible via two routes. For example:
+Enabling this plugin for Nuxt in **static mode** will allow resources, including pages, to be accessible via 3 different route structures:
 
 - `foo.com/`
 - `gateway.ipfs.io/ipfs/Qma....AbFd/`
+- `ipfs.io/ipns/foo.com/`
 
-Subsequently, resources and other pages use paths relative to those bases:
-- `foo.com/bar`
-- `gateway.ipfs.io/ipfs/Qma....AbFd/bar`
+Subsequently, resources and other pages automatically use paths relative to those bases:
+- `foo.com/bar.png`
+- `gateway.ipfs.io/ipfs/Qma....AbFd/bar.png`
+- `ipfs.io/ipns/foo.com/bar.png`
 
 or
 - `foo.com/style.css`
 - `gateway.ipfs.io/ipfs/Qma....AbFd/style.css`
+- `ipfs.io/ipns/foo.com/style.css`
 
 ## Installation
 
 _`npm` package coming soon. Manual installation required for now._
 
 1. Download this repo, extract it and put the resulting folder into your `modules` directory in your Nuxt project
-2. Add `target: 'static'` to your `nuxt.config.js`
+2. Add `target: 'static'` and `router.base` to your `nuxt.config.js`
 3. Add the module folder name to the `modules` array in `nuxt.config.js`
 
 **nuxt.config.js**
@@ -31,7 +34,10 @@ export default {
   target: 'static',
   modules: [
     '~/modules/nuxt-module-ipfs'
-  ]
+  ],
+  router: {
+    base: process.env.NODE_ENV === 'development' ? '/' : '/ipfs/hash/'
+  }
 }
 ```
 
@@ -39,16 +45,12 @@ export default {
 
 _Support for the `assets` directory potentially coming in the future_
 
-All image assets must be placed in the `static` directory, _not_ the `assets` directory.
-
-All links and image assets must be wrapped using the included `$relativity()` global method.
+All image assets must be placed in the `static` directory, _not_ the `assets` directory and must be wrapped using the included `$relativity()` (including a starting forward slash) global method as outlined below:
 
 **component.vue**
 ```vue
 <template>
-  <nuxt-link :to="$relativity('/duck')">
-    <img :src="$relativity('/images/duck.jpg')" />
-  </nuxt-link>
+  <img :src="$relativity('/images/duck.jpg')" />
 </template>
 ```
 
@@ -65,9 +67,7 @@ Additionally, it may be useful in the future to add a canonicalization option, t
 Since IPFS gateway URLs were an older (and by some standards _legacy_) implementation, this tag would typically be added to the IPFS Gateway URLs only.
 
 ## Roadmap
-- [ ] Update hook to clear `WARN` message: `render:routeContext(nuxt) is deprecated, Please use vue-renderer:ssr:context(context)`
 - [ ] Add checker for `target: static`
-- [ ] Add checker for `publicPath` and `router.base` (values _must not_ be set in `nuxt.config.js`)
 - [ ] Construct and inject `rel="canonical"` tag
-- [ ] Make the favicon path relative
+- [ ] Make the favicon path relative and working on all URL structures
 - [ ] Make `200.html` path relative
