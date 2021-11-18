@@ -1,6 +1,6 @@
 {
-  "name": "nuxt-module-ipfs",
-  "version": "1.0.2-alpha.2",
+  "name": "@agency-undone/nuxt-module-ipfs",
+  "version": "1.0.2-alpha.3",
   "description": "A Nuxt module that enables nuxt routing for both the intended path and IPFS gateway URLs, which include a CID (hash)",
   "keywords": [
     "Nuxt",
@@ -31,5 +31,8 @@
   },
   "engines": {
     "node": ">=12.21.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
